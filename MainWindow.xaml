@@ -1,0 +1,45 @@
+﻿<Window x:Class="Juego_de_preguntas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Juego_de_preguntas"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Jugar">
+                
+            </TabItem>
+            <TabItem Header="Añadir pregunta">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button>Añadir pregunta</Button>
+                        <Button>Limpiar</Button>
+                    </StackPanel>
+                    <DockPanel>
+                        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
+                            <StackPanel Orientation="Horizontal" MinWidth="600" HorizontalAlignment="Center">
+                                <TextBlock Margin="0,0,10,0" Width="70">Pregunta: </TextBlock>
+                                <TextBox Width="600"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" MinWidth="600" HorizontalAlignment="Center">
+                                <TextBlock Margin="0,0,10,0" Width="70">Respuesta: </TextBlock>
+                                <TextBox Width="600"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Margin="0,0,10,0" Width="70">Imágen: </TextBlock>
+                                <TextBox Width="510"></TextBox>
+                                <Button Width="70" Margin="20,0,0,0">Examinar</Button>
+                            </StackPanel>
+                        </StackPanel>
+                        <Border BorderBrush="Black" BorderThickness="3" Width="680">
+                            <Image></Image>
+                        </Border>
+                    </DockPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Gestionar preguntas" />
+        </TabControl>
+    </Grid>
+</Window>
