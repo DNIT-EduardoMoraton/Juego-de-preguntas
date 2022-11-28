@@ -9,7 +9,47 @@
     <Grid>
         <TabControl>
             <TabItem Header="Jugar">
-                
+                <Border BorderBrush="Gray" BorderThickness="20,10,20,20">
+                    <DockPanel >
+                        <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="0,10,0,20">
+                            <TextBlock>Estado ventana</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" ></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" BorderBrush="Aqua" BorderThickness="3">
+                                
+                            </Border>
+                            <DockPanel Grid.Row="1" LastChildFill="False">
+                                <DockPanel Width="500">
+                                    <TextBlock DockPanel.Dock="Top"> TEXTO DE LA PREGUNTA</TextBlock>
+                                    <StackPanel DockPanel.Dock="Top">
+                                        <TextBlock>Resuesta:</TextBlock>
+                                        <DockPanel>
+                                            <Button  DockPanel.Dock="Right">Validar</Button>
+                                            <TextBox></TextBox>
+                                        </DockPanel>
+
+                                    </StackPanel>
+                                    <Expander>
+                                        <Expander.Header>Pista</Expander.Header>
+                                        <TextBlock>PISTAAAAAAAAA</TextBlock>
+                                    </Expander>
+                                </DockPanel>
+                                <Slider Orientation="Vertical" Maximum="2" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True">
+                                    
+                                </Slider>
+                                <Image Source="assets/Proyecto nuevo.png"></Image>
+                                <Image DockPanel.Dock="Left" x:Name="cheeseImage">
+
+                                </Image>
+                            </DockPanel>
+                        </Grid>
+                        
+                    </DockPanel>
+                </Border>
             </TabItem>
             <TabItem Header="Añadir pregunta">
                 <DockPanel>
@@ -39,7 +79,77 @@
                     </DockPanel>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Gestionar preguntas" />
+            <TabItem Header="Gestionar preguntas" >
+                <DockPanel LastChildFill="true">
+                    <Border DockPanel.Dock="Right" BorderBrush="Black" BorderThickness="3" Width="200">
+                        <DockPanel>
+                            <Border BorderBrush="Black" BorderThickness="3" DockPanel.Dock="Bottom" Height="30">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button>C JSON</Button>
+                                    <Button>G JSON</Button>
+                                    <Button>TRASH   </Button>
+                                </StackPanel>
+                            </Border>
+
+                            <Border BorderBrush="Black" BorderThickness="3">
+                                <ListBox>
+                                    
+                                </ListBox>
+                            </Border>
+
+                        </DockPanel>
+                    </Border>
+                    <Border>
+                        <DockPanel>
+            
+                            <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3"> 
+                                <DockPanel>
+                                    <TextBlock DockPanel.Dock="Left">Imagen</TextBlock>
+                                    <Button DockPanel.Dock="Right">Examinar</Button>
+                                    <TextBox></TextBox>
+                                    
+                                </DockPanel>
+                            </Border>
+                            <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3">
+                                <DockPanel>
+                                    <TextBlock DockPanel.Dock="Left">Respuesta</TextBlock>
+                                    <TextBox></TextBox>
+                                </DockPanel>
+                            </Border>
+                            <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3">
+                                <DockPanel>
+                                    <TextBlock DockPanel.Dock="Left">Pregunta</TextBlock>
+                                    <TextBox></TextBox>
+                                </DockPanel>
+                            </Border>
+                            <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3">
+                                <DockPanel LastChildFill="False">
+                                    <DockPanel DockPanel.Dock="Left" LastChildFill="False">
+                                        <TextBlock DockPanel.Dock="Left">Dificultad</TextBlock>
+                                        <ComboBox DockPanel.Dock="Right"></ComboBox>
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Right" LastChildFill="False">
+                                        <TextBlock DockPanel.Dock="Left">Dificultad</TextBlock>
+                                        <ComboBox DockPanel.Dock="Right"></ComboBox>
+                                    </DockPanel>
+                                </DockPanel>
+                            </Border>
+                            <Border BorderBrush="Aquamarine" BorderThickness="3">
+                                <Image>
+                                    
+                                </Image>
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                    
+                    
+
+                </DockPanel>
+                
+                
+                
+                
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
