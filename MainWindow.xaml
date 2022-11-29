@@ -42,9 +42,15 @@
                                     
                                 </Slider>
                                 <Image Source="assets/Proyecto nuevo.png"></Image>
-                                <Image DockPanel.Dock="Left" x:Name="cheeseImage">
-
-                                </Image>
+                                <Grid Width="150" DockPanel.Dock="Right">
+                                    <Image x:Name="CheeseCat0" Width="100"/>
+                                    <Image x:Name="CheeseCat1" Width="100"/>
+                                    <Image x:Name="CheeseCat2" Width="100"/>
+                                    <Image x:Name="CheeseCat3" Width="100"/>
+                                    <Image x:Name="CheeseCat4" Width="100"/>
+                                    <Image x:Name="CheeseCat5" Width="100"/>
+                                    
+                                </Grid>
                             </DockPanel>
                         </Grid>
                         
@@ -72,8 +78,12 @@
                                 <TextBox Width="510"></TextBox>
                                 <Button Width="70" Margin="20,0,0,0">Examinar</Button>
                             </StackPanel>
+                            <DockPanel LastChildFill="False" Width="680">
+                                <ComboBox DockPanel.Dock="Left" ></ComboBox>
+                                <ComboBox DockPanel.Dock="Right"> </ComboBox>
+                            </DockPanel>
                         </StackPanel>
-                        <Border BorderBrush="Black" BorderThickness="3" Width="680">
+                        <Border BorderBrush="Black" BorderThickness="7">
                             <Image></Image>
                         </Border>
                     </DockPanel>
