@@ -41,14 +41,15 @@
                                 <Slider Orientation="Vertical" Maximum="2" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True">
                                     
                                 </Slider>
-                                <Image Source="assets/Proyecto nuevo.png"></Image>
-                                <Grid Width="150" DockPanel.Dock="Right">
-                                    <Image x:Name="CheeseCat0" Width="100"/>
-                                    <Image x:Name="CheeseCat1" Width="100"/>
-                                    <Image x:Name="CheeseCat2" Width="100"/>
-                                    <Image x:Name="CheeseCat3" Width="100"/>
-                                    <Image x:Name="CheeseCat4" Width="100"/>
-                                    <Image x:Name="CheeseCat5" Width="100"/>
+                                <Image Source="assets/layout/difficultySlider.png"></Image>
+                                <Grid DockPanel.Dock="Right">
+                                    <Image x:Name="Base" Source="assets/cheese/base.png"/>
+                                    <Image x:Name="CheeseCat0" Source="assets/cheese/cat_0.png"/>
+                                    <Image x:Name="CheeseCat1" Source="assets/cheese/cat_1.png"/>
+                                    <Image x:Name="CheeseCat2" Source="assets/cheese/cat_2.png"/>
+                                    <Image x:Name="CheeseCat3" Source="assets/cheese/cat_3.png"/>
+                                    <Image x:Name="CheeseCat4" Source="assets/cheese/cat_4.png"/>
+                                    <Image x:Name="CheeseCat5" Source="assets/cheese/cat_5.png"/>
                                     
                                 </Grid>
                             </DockPanel>
@@ -79,7 +80,7 @@
                                 <Button Width="70" Margin="20,0,0,0">Examinar</Button>
                             </StackPanel>
                             <DockPanel LastChildFill="False" Width="680">
-                                <ComboBox DockPanel.Dock="Left" ></ComboBox>
+                                <ComboBox DockPanel.Dock="Left" ItemsSource="{Binding Path=Categories}"></ComboBox>
                                 <ComboBox DockPanel.Dock="Right"> </ComboBox>
                             </DockPanel>
                         </StackPanel>

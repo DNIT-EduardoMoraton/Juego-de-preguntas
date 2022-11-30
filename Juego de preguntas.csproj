@@ -150,6 +150,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="classess\Game.cs" />
+    <Compile Include="classess\Question.cs" />
+    <Compile Include="MainWindowVM.cs" />
     <Compile Include="services\BlobService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -192,7 +195,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="assets\Proyecto nuevo.png" />
+    <Resource Include="assets\layout\difficultySlider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\cheese\base.png" />
+    <Resource Include="assets\cheese\cat_0.png" />
+    <Resource Include="assets\cheese\cat_1.png" />
+    <Resource Include="assets\cheese\cat_2.png" />
+    <Resource Include="assets\cheese\cat_3.png" />
+    <Resource Include="assets\cheese\cat_4.png" />
+    <Resource Include="assets\cheese\cat_5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\CommunityToolkit.Mvvm.8.0.0\build\netstandard2.0\CommunityToolkit.Mvvm.targets" Condition="Exists('packages\CommunityToolkit.Mvvm.8.0.0\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" />
