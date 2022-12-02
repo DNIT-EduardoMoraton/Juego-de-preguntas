@@ -23,7 +23,14 @@ namespace Juego_de_preguntas.services
             
             Stream streamImagen = File.OpenRead(path);
             string nombreImagen = Path.GetFileName(path);
-            clienteContenedor.UploadBlob(nombreImagen, streamImagen);
+            try
+            {
+                clienteContenedor.UploadBlob(nombreImagen, streamImagen);
+            } catch (Azure.RequestFailedException)
+            {
+                DialogService.Error("Se ha seleccionado la misma Imágen");
+            }
+            
 
            
             var clienteBlobImagen = clienteContenedor.GetBlobClient(nombreImagen);

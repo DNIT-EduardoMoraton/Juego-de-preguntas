@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Juego_de_preguntas.classess;
+using Juego_de_preguntas.services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -52,15 +53,34 @@ namespace Juego_de_preguntas
             set { SetProperty(ref categories, value); }
         }
 
+        private ObservableCollection<string> dificulties;
+
+        public ObservableCollection<string> Dificulties
+        {
+            get { return dificulties; }
+            set { SetProperty(ref dificulties, value); }
+        }
+
         public MainWindowVM()
         {
             currQuestionList = new ObservableCollection<Question>();
             EditCurrQuestion = null;
-            AddCurrQuestion = null;
+
+            // Extraer a método
+            AddCurrQuestion = new Question();
+            AddCurrQuestion.Category = "Arte y literatura";
+            AddCurrQuestion.Dificulty = "Facil";
+
             CurrGame = new Game(false, null, null);
             Categories = new ObservableCollection<string> { "Arte y literatura", "Historia", "Deportes", "Ciencia", "Deportes" };
+            Dificulties = new ObservableCollection<string> { "Facil", "Medio", "Dificil"};
         }
 
+        public void manageAddImage()
+        {
+            AddCurrQuestion.Image = BlobService.getBlob(DialogService.GetImagePath());
+            
+        }
 
 
     }

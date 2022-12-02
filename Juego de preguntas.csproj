@@ -154,6 +154,7 @@
     <Compile Include="classess\Question.cs" />
     <Compile Include="MainWindowVM.cs" />
     <Compile Include="services\BlobService.cs" />
+    <Compile Include="services\DialogService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -59,6 +59,10 @@ namespace Juego_de_preguntas.classess
             Dificulty = dificulty;
         }
 
+        public Question()
+        {
+        }
+
         public override string ToString()
         {
             return $"{{{nameof(QuestionText)}={QuestionText}, {nameof(CorrectAns)}={CorrectAns}, {nameof(Category)}={Category}, {nameof(Image)}={Image}, {nameof(Dificulty)}={Dificulty}}}";

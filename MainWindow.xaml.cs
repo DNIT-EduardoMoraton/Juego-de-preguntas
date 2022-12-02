@@ -23,8 +23,15 @@ namespace Juego_de_preguntas
         private MainWindowVM vm;
         public MainWindow()
         {
+
             InitializeComponent();
+            vm = new MainWindowVM();
             this.DataContext = vm;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            vm.manageAddImage();
         }
     }
 }

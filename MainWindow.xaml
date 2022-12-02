@@ -68,24 +68,24 @@
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
                             <StackPanel Orientation="Horizontal" MinWidth="600" HorizontalAlignment="Center">
                                 <TextBlock Margin="0,0,10,0" Width="70">Pregunta: </TextBlock>
-                                <TextBox Width="600"></TextBox>
+                                <TextBox Width="600" Text="{Binding Path=AddCurrQuestion.QuestionText}"></TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" MinWidth="600" HorizontalAlignment="Center">
                                 <TextBlock Margin="0,0,10,0" Width="70">Respuesta: </TextBlock>
-                                <TextBox Width="600"></TextBox>
+                                <TextBox Width="600" Text="{Binding Path=AddCurrQuestion.CorrectAns}"></TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock Margin="0,0,10,0" Width="70">Imágen: </TextBlock>
-                                <TextBox Width="510"></TextBox>
-                                <Button Width="70" Margin="20,0,0,0">Examinar</Button>
+                                <TextBox Width="510" Text="{Binding Path=AddCurrQuestion.Image}"></TextBox>
+                                <Button Width="70" Margin="20,0,0,0" Click="Button_Click">Examinar</Button>
                             </StackPanel>
                             <DockPanel LastChildFill="False" Width="680">
-                                <ComboBox DockPanel.Dock="Left" ItemsSource="{Binding Path=Categories}"></ComboBox>
-                                <ComboBox DockPanel.Dock="Right"> </ComboBox>
+                                <ComboBox DockPanel.Dock="Left" ItemsSource="{Binding Path=Categories}" SelectedItem="{Binding Path=AddCurrQuestion.Category}"/>
+                                <ComboBox DockPanel.Dock="Right" ItemsSource="{Binding Path=Dificulties}" SelectedItem="{Binding Path=AddCurrQuestion.Dificulty}"> </ComboBox>
                             </DockPanel>
                         </StackPanel>
                         <Border BorderBrush="Black" BorderThickness="7">
-                            <Image></Image>
+                            <Image Source="{Binding Path=AddCurrQuestion.Image}"></Image>
                         </Border>
                     </DockPanel>
                 </DockPanel>
