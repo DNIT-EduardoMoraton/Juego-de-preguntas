@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Juego_de_preguntas.classess
 {
-    class Question : ObservableObject
+    class Question : ObservableObject, ICloneable
     {
         private string questionText;
 
@@ -66,6 +66,11 @@ namespace Juego_de_preguntas.classess
         public override string ToString()
         {
             return $"{{{nameof(QuestionText)}={QuestionText}, {nameof(CorrectAns)}={CorrectAns}, {nameof(Category)}={Category}, {nameof(Image)}={Image}, {nameof(Dificulty)}={Dificulty}}}";
+        }
+
+        public object Clone()
+        {
+            return new Question(this.questionText, this.correctAns, this.category, this.image, this.dificulty);
         }
     }
 }

@@ -28,7 +28,8 @@ namespace Juego_de_preguntas.services
                 clienteContenedor.UploadBlob(nombreImagen, streamImagen);
             } catch (Azure.RequestFailedException)
             {
-                DialogService.Error("Se ha seleccionado la misma Imágen");
+                new DialogService()
+                .Error("Se ha seleccionado la misma Imágen");
             }
             
 

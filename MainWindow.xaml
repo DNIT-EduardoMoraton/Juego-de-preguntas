@@ -6,6 +6,20 @@
         xmlns:local="clr-namespace:Juego_de_preguntas"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type ListBox}" x:Key="EditQuestionSideMenuItem">
+            <Border BorderBrush="AntiqueWhite" BorderThickness="3">
+                <DockPanel Height="50" Width="200">
+                    <Image Source="{Binding Image}" Width="50" DockPanel.Dock="Left" Stretch="UniformToFill"></Image>
+                    <StackPanel Margin="2">
+                        <TextBlock Text="{Binding Path=QuestionText}"></TextBlock>
+                        <TextBlock Text="{Binding Path=Category}"></TextBlock>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Jugar">
@@ -61,8 +75,8 @@
             <TabItem Header="Añadir pregunta">
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button>Añadir pregunta</Button>
-                        <Button>Limpiar</Button>
+                        <Button x:Name="AnyadirPregunta" Click="AnyadirPregunta_Click">Añadir pregunta</Button>
+                        <Button x:Name="LimpiarButton" Click="LimpiarButton_Click">Limpiar</Button>
                     </StackPanel>
                     <DockPanel>
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
@@ -77,7 +91,7 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock Margin="0,0,10,0" Width="70">Imágen: </TextBlock>
                                 <TextBox Width="510" Text="{Binding Path=AddCurrQuestion.Image}"></TextBox>
-                                <Button Width="70" Margin="20,0,0,0" Click="Button_Click">Examinar</Button>
+                                <Button x:Name="examinar_Button" Width="70" Margin="20,0,0,0" Click="Examinar_Button_Click">Examinar</Button>
                             </StackPanel>
                             <DockPanel LastChildFill="False" Width="680">
                                 <ComboBox DockPanel.Dock="Left" ItemsSource="{Binding Path=Categories}" SelectedItem="{Binding Path=AddCurrQuestion.Category}"/>
@@ -92,18 +106,18 @@
             </TabItem>
             <TabItem Header="Gestionar preguntas" >
                 <DockPanel LastChildFill="true">
-                    <Border DockPanel.Dock="Right" BorderBrush="Black" BorderThickness="3" Width="200">
+                    <Border DockPanel.Dock="Right" BorderBrush="Black" BorderThickness="3" Width="250">
                         <DockPanel>
                             <Border BorderBrush="Black" BorderThickness="3" DockPanel.Dock="Bottom" Height="30">
                                 <StackPanel Orientation="Horizontal">
-                                    <Button>C JSON</Button>
-                                    <Button>G JSON</Button>
-                                    <Button>TRASH   </Button>
+                                    <Button>LOAD</Button>
+                                    <Button>SAVE</Button>
+                                    <Button x:Name="eliminarButton" Click="eliminarButton_Click">TRASH   </Button>
                                 </StackPanel>
                             </Border>
 
                             <Border BorderBrush="Black" BorderThickness="3">
-                                <ListBox>
+                                <ListBox ItemsSource="{Binding Path=CurrQuestionList}" SelectedItem="{Binding Path=EditCurrQuestion}" ItemTemplate="{StaticResource EditQuestionSideMenuItem}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                     
                                 </ListBox>
                             </Border>
@@ -117,36 +131,36 @@
                                 <DockPanel>
                                     <TextBlock DockPanel.Dock="Left">Imagen</TextBlock>
                                     <Button DockPanel.Dock="Right">Examinar</Button>
-                                    <TextBox></TextBox>
+                                    <TextBox Text="{Binding Path=EditCurrQuestion.Image}"></TextBox>
                                     
                                 </DockPanel>
                             </Border>
                             <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3">
                                 <DockPanel>
                                     <TextBlock DockPanel.Dock="Left">Respuesta</TextBlock>
-                                    <TextBox></TextBox>
+                                    <TextBox Text="{Binding Path=EditCurrQuestion.CorrectAns}"></TextBox>
                                 </DockPanel>
                             </Border>
                             <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3">
                                 <DockPanel>
                                     <TextBlock DockPanel.Dock="Left">Pregunta</TextBlock>
-                                    <TextBox></TextBox>
+                                    <TextBox Text="{Binding Path=EditCurrQuestion.QuestionText}"></TextBox>
                                 </DockPanel>
                             </Border>
                             <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3">
                                 <DockPanel LastChildFill="False">
                                     <DockPanel DockPanel.Dock="Left" LastChildFill="False">
-                                        <TextBlock DockPanel.Dock="Left">Dificultad</TextBlock>
-                                        <ComboBox DockPanel.Dock="Right"></ComboBox>
+                                        <TextBlock DockPanel.Dock="Left">Categoria</TextBlock>
+                                        <ComboBox DockPanel.Dock="Right" ItemsSource="{Binding Path=Categories}" SelectedItem="{Binding Path=EditCurrQuestion.Category}"></ComboBox>
                                     </DockPanel>
                                     <DockPanel DockPanel.Dock="Right" LastChildFill="False">
                                         <TextBlock DockPanel.Dock="Left">Dificultad</TextBlock>
-                                        <ComboBox DockPanel.Dock="Right"></ComboBox>
+                                        <ComboBox DockPanel.Dock="Right" ItemsSource="{Binding Path=Dificulties}" SelectedItem="{Binding Path=EditCurrQuestion.Dificulty}"></ComboBox>
                                     </DockPanel>
                                 </DockPanel>
                             </Border>
                             <Border BorderBrush="Aquamarine" BorderThickness="3">
-                                <Image>
+                                <Image Source="{Binding Path=EditCurrQuestion.Image}">
                                     
                                 </Image>
                             </Border>

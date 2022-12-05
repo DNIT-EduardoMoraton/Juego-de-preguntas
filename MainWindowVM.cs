@@ -61,27 +61,57 @@ namespace Juego_de_preguntas
             set { SetProperty(ref dificulties, value); }
         }
 
+        private DialogService dialogService;
+
         public MainWindowVM()
         {
             currQuestionList = new ObservableCollection<Question>();
             EditCurrQuestion = null;
 
+            dialogService = new DialogService();
             // Extraer a método
+
+            creaAddCurrQuestion();
+            creaEditCurrQuestion();
+
+            CurrGame = new Game(false, null, null);
+            Categories = new ObservableCollection<string> { "Arte y literatura", "Historia", "Deportes", "Ciencia", "Deportes", "Ocio y Entretenimiento" };
+            Dificulties = new ObservableCollection<string> { "Facil", "Medio", "Dificil"};
+        }
+
+        public void creaAddCurrQuestion()
+        {
             AddCurrQuestion = new Question();
             AddCurrQuestion.Category = "Arte y literatura";
             AddCurrQuestion.Dificulty = "Facil";
-
-            CurrGame = new Game(false, null, null);
-            Categories = new ObservableCollection<string> { "Arte y literatura", "Historia", "Deportes", "Ciencia", "Deportes" };
-            Dificulties = new ObservableCollection<string> { "Facil", "Medio", "Dificil"};
         }
 
         public void manageAddImage()
         {
-            AddCurrQuestion.Image = BlobService.getBlob(DialogService.GetImagePath());
+            AddCurrQuestion.Image = BlobService.getBlob(dialogService.GetImagePath());
             
         }
 
+        public void addQuestionToCurrQuestionList()
+        {
+            CurrQuestionList.Add((Question)addCurrQuestion.Clone());
+            creaAddCurrQuestion();
+        }
+
+        // EDITTTTTTTTTTTTTTTTT
+
+
+        public void deleteEditQuestion()
+        {
+            CurrQuestionList.Remove(EditCurrQuestion);
+        }
+
+        public void creaEditCurrQuestion()
+        {
+            EditCurrQuestion = new Question();
+            EditCurrQuestion.Category = "Arte y literatura";
+            EditCurrQuestion.Dificulty = "Facil";
+        }
 
     }
 }

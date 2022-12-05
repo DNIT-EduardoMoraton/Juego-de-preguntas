@@ -29,9 +29,24 @@ namespace Juego_de_preguntas
             this.DataContext = vm;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Examinar_Button_Click(object sender, RoutedEventArgs e)
         {
             vm.manageAddImage();
+        }
+
+        private void AnyadirPregunta_Click(object sender, RoutedEventArgs e)
+        {
+            vm.addQuestionToCurrQuestionList();
+        }
+
+        private void LimpiarButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.creaAddCurrQuestion();
+        }
+
+        private void eliminarButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.deleteEditQuestion();
         }
     }
 }
