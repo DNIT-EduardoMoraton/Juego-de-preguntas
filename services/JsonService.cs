@@ -16,13 +16,18 @@ namespace Juego_de_preguntas.services
 
         public void Save<T>(T ob, String path)
         {
-            string personasJson = JsonConvert.SerializeObject(ob);
-            File.WriteAllText(path, personasJson);
+            
+            if (path != null)
+            {
+                string personasJson = JsonConvert.SerializeObject(ob);
+                File.WriteAllText(path, personasJson);
+            }
+                
         }
 
         public object Open<T>(String path)
         {
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText("personas.json"));
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
 
         }
 

@@ -54,6 +54,21 @@ namespace Juego_de_preguntas.classess
             
         }
 
+        public bool GetGameList(String dificulty, ObservableCollection<Question> list)
+        {
+
+
+            foreach (Question question in list)
+            {
+                if (question.Category == dificulty)
+                {
+                    QuestionList.Add(question);
+                }
+            }
+
+            return true;
+        }
+
 
 
 

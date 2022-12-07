@@ -7,8 +7,47 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
+
+
+
+
+
+        <Style x:Key="CategoryColorBorderBase" TargetType="{x:Type Border}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Category}" Value="Arte y literatura">
+                    <Setter Property="BorderBrush" Value="Green"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Category}" Value="Historia">
+                    <Setter Property="BorderBrush" Value="Purple"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Category}" Value="Deportes">
+                    <Setter Property="BorderBrush" Value="Yellow"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Category}" Value="Ciencia">
+                    <Setter Property="BorderBrush" Value="Orange"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Category}" Value="Comida">
+                    <Setter Property="BorderBrush" Value="Blue"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Category}" Value="Ocio y Entretenimiento">
+                    <Setter Property="BorderBrush" Value="Brown"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Dificulty}" Value="Facil">
+                    <Setter Property="Background" Value="LightGreen"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Dificulty}" Value="Medio">
+                    <Setter Property="Background" Value="Yellow"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Dificulty}" Value="Dificil">
+                    <Setter Property="Background" Value="DarkRed"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        
+
         <DataTemplate DataType="{x:Type ListBox}" x:Key="EditQuestionSideMenuItem">
-            <Border BorderBrush="AntiqueWhite" BorderThickness="3">
+            <Border BorderThickness="3" Style="{StaticResource CategoryColorBorderBase}">
                 <DockPanel Height="50" Width="200">
                     <Image Source="{Binding Image}" Width="50" DockPanel.Dock="Left" Stretch="UniformToFill"></Image>
                     <StackPanel Margin="2">
@@ -17,12 +56,11 @@
                     </StackPanel>
                 </DockPanel>
             </Border>
-
         </DataTemplate>
     </Window.Resources>
     <Grid>
         <TabControl>
-            <TabItem Header="Jugar">
+            <TabItem Header="Jugar" DataContext="{Binding Path=CurrGame}">
                 <Border BorderBrush="Gray" BorderThickness="20,10,20,20">
                     <DockPanel >
                         <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="0,10,0,20">
@@ -110,8 +148,8 @@
                         <DockPanel>
                             <Border BorderBrush="Black" BorderThickness="3" DockPanel.Dock="Bottom" Height="30">
                                 <StackPanel Orientation="Horizontal">
-                                    <Button>LOAD</Button>
-                                    <Button>SAVE</Button>
+                                    <Button x:Name="LoadButton" Click="LoadButton_Click">LOAD</Button>
+                                    <Button x:Name="SaveButton" Click="SaveButton_Click" >SAVE</Button>
                                     <Button x:Name="eliminarButton" Click="eliminarButton_Click">TRASH   </Button>
                                 </StackPanel>
                             </Border>

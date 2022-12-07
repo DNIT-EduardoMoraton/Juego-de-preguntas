@@ -48,5 +48,15 @@ namespace Juego_de_preguntas
         {
             vm.deleteEditQuestion();
         }
+
+        private void LoadButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.LoadJson();
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.SaveJson();
+        }
     }
 }

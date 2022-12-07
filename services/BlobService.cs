@@ -20,7 +20,7 @@ namespace Juego_de_preguntas.services
             var clienteBlobService = new BlobServiceClient(cadenaConexion);
             var clienteContenedor = clienteBlobService.GetBlobContainerClient(nombreContenedorBlobs);
 
-            
+            // Verificar que el path no es nulo
             Stream streamImagen = File.OpenRead(path);
             string nombreImagen = Path.GetFileName(path);
             try

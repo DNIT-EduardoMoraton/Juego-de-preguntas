@@ -62,20 +62,21 @@ namespace Juego_de_preguntas
         }
 
         private DialogService dialogService;
-
+        private JsonService jsonService;
         public MainWindowVM()
         {
             currQuestionList = new ObservableCollection<Question>();
             EditCurrQuestion = null;
 
             dialogService = new DialogService();
+            jsonService = new JsonService();
             // Extraer a método
 
             creaAddCurrQuestion();
             creaEditCurrQuestion();
 
             CurrGame = new Game(false, null, null);
-            Categories = new ObservableCollection<string> { "Arte y literatura", "Historia", "Deportes", "Ciencia", "Deportes", "Ocio y Entretenimiento" };
+            Categories = new ObservableCollection<string> { "Arte y literatura", "Historia", "Deportes", "Ciencia", "Comida", "Ocio y Entretenimiento" };
             Dificulties = new ObservableCollection<string> { "Facil", "Medio", "Dificil"};
         }
 
@@ -104,6 +105,16 @@ namespace Juego_de_preguntas
         public void deleteEditQuestion()
         {
             CurrQuestionList.Remove(EditCurrQuestion);
+        }
+
+        public void SaveJson()
+        {
+            jsonService.Save<ObservableCollection<Question>>(CurrQuestionList, dialogService.SaveJsonPath());
+        }
+
+        public void LoadJson()
+        {
+            CurrQuestionList = (ObservableCollection<Question>)jsonService.Open<ObservableCollection<Question>>(dialogService.GetJsonPath());
         }
 
         public void creaEditCurrQuestion()
