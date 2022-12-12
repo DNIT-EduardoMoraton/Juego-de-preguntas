@@ -73,13 +73,14 @@ namespace Juego_de_preguntas
             // Extraer a método
 
             creaAddCurrQuestion();
-            creaEditCurrQuestion();
-
-            CurrGame = new Game(false, null, null);
+            CreaEditCurrQuestion();
+            
+            CurrGame = new Game();
             Categories = new ObservableCollection<string> { "Arte y literatura", "Historia", "Deportes", "Ciencia", "Comida", "Ocio y Entretenimiento" };
             Dificulties = new ObservableCollection<string> { "Facil", "Medio", "Dificil"};
         }
 
+        // ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
         public void creaAddCurrQuestion()
         {
             AddCurrQuestion = new Question();
@@ -117,12 +118,21 @@ namespace Juego_de_preguntas
             CurrQuestionList = (ObservableCollection<Question>)jsonService.Open<ObservableCollection<Question>>(dialogService.GetJsonPath());
         }
 
-        public void creaEditCurrQuestion()
+        public void CreaEditCurrQuestion()
         {
             EditCurrQuestion = new Question();
             EditCurrQuestion.Category = "Arte y literatura";
             EditCurrQuestion.Dificulty = "Facil";
         }
+
+        // PLAYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
+
+        public void PlayGame()
+        {
+            this.currGame.Start("Facil", CurrQuestionList);
+        }
+
 
     }
 }

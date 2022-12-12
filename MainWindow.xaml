@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-
+        <BooleanToVisibilityConverter x:Key="booleanToVisbility"></BooleanToVisibilityConverter>
 
 
 
@@ -43,8 +43,42 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
-        
+
+
+        <Style x:Key="CategoryColorBorderMainGame" TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="Gray"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Arte y literatura">
+                    <Setter Property="BorderBrush" Value="Green"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Historia">
+                    <Setter Property="BorderBrush" Value="Purple"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Deportes">
+                    <Setter Property="BorderBrush" Value="Yellow"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Ciencia">
+                    <Setter Property="BorderBrush" Value="Orange"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Comida">
+                    <Setter Property="BorderBrush" Value="Blue"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Ocio y Entretenimiento">
+                    <Setter Property="BorderBrush" Value="Brown"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=CurrQuestion.Dificulty}" Value="Facil">
+                    <Setter Property="Background" Value="LightGreen"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=CurrQuestion.Dificulty}" Value="Medio">
+                    <Setter Property="Background" Value="Yellow"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=CurrQuestion.Dificulty}" Value="Dificil">
+                    <Setter Property="Background" Value="DarkRed"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
 
         <DataTemplate DataType="{x:Type ListBox}" x:Key="EditQuestionSideMenuItem">
             <Border BorderThickness="3" Style="{StaticResource CategoryColorBorderBase}">
@@ -61,9 +95,9 @@
     <Grid>
         <TabControl>
             <TabItem Header="Jugar" DataContext="{Binding Path=CurrGame}">
-                <Border BorderBrush="Gray" BorderThickness="20,10,20,20">
+                <Border BorderThickness="20,10,20,20" Style="{StaticResource CategoryColorBorderMainGame}">
                     <DockPanel >
-                        <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="0,10,0,20">
+                        <Border DockPanel.Dock="Top" Style="{StaticResource CategoryColorBorderMainGame}" BorderThickness="0,10,0,20">
                             <TextBlock>Estado ventana</TextBlock>
                         </Border>
                         <Grid>
@@ -75,8 +109,8 @@
                                 
                             </Border>
                             <DockPanel Grid.Row="1" LastChildFill="False">
-                                <DockPanel Width="500">
-                                    <TextBlock DockPanel.Dock="Top"> TEXTO DE LA PREGUNTA</TextBlock>
+                                <DockPanel Width="500" LastChildFill="true">
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=CurrQuestion.QuestionText}"></TextBlock>
                                     <StackPanel DockPanel.Dock="Top">
                                         <TextBlock>Resuesta:</TextBlock>
                                         <DockPanel>
@@ -85,10 +119,12 @@
                                         </DockPanel>
 
                                     </StackPanel>
+                                    <Button x:Name="IniciarButton" DockPanel.Dock="Right" Width="100" Click="IniciarButton_Click">Iniciar</Button>
                                     <Expander>
                                         <Expander.Header>Pista</Expander.Header>
-                                        <TextBlock>PISTAAAAAAAAA</TextBlock>
+                                        <TextBlock Text="{Binding Path=CurrQuestion.CorrectAns}"></TextBlock>
                                     </Expander>
+                                    
                                 </DockPanel>
                                 <Slider Orientation="Vertical" Maximum="2" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True">
                                     
@@ -96,12 +132,12 @@
                                 <Image Source="assets/layout/difficultySlider.png"></Image>
                                 <Grid DockPanel.Dock="Right">
                                     <Image x:Name="Base" Source="assets/cheese/base.png"/>
-                                    <Image x:Name="CheeseCat0" Source="assets/cheese/cat_0.png"/>
-                                    <Image x:Name="CheeseCat1" Source="assets/cheese/cat_1.png"/>
-                                    <Image x:Name="CheeseCat2" Source="assets/cheese/cat_2.png"/>
-                                    <Image x:Name="CheeseCat3" Source="assets/cheese/cat_3.png"/>
-                                    <Image x:Name="CheeseCat4" Source="assets/cheese/cat_4.png"/>
-                                    <Image x:Name="CheeseCat5" Source="assets/cheese/cat_5.png"/>
+                                    <Image x:Name="CheeseCat0" Source="assets/cheese/cat_0.png" Visibility="{Binding Path=BlueQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat1" Source="assets/cheese/cat_1.png" Visibility="{Binding Path=OrangeQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat2" Source="assets/cheese/cat_2.png" Visibility="{Binding Path=YellowQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat3" Source="assets/cheese/cat_3.png" Visibility="{Binding Path=PurpleQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat4" Source="assets/cheese/cat_4.png" Visibility="{Binding Path=GreenQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat5" Source="assets/cheese/cat_5.png" Visibility="{Binding Path=BrownQ, Converter={StaticResource booleanToVisbility}}"/>
                                     
                                 </Grid>
                             </DockPanel>

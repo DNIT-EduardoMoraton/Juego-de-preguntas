@@ -58,5 +58,10 @@ namespace Juego_de_preguntas
         {
             vm.SaveJson();
         }
+
+        private void IniciarButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.PlayGame();
+        }
     }
 }

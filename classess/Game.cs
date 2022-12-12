@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Juego_de_preguntas.services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,42 +32,135 @@ namespace Juego_de_preguntas.classess
         public ObservableCollection<Question> QuestionList
         {
             get { return questionList; }
-            set { SetProperty(ref questionList, value);  }
+            set { SetProperty(ref questionList, value); }
         }
 
-        private Boolean[] categoryList;
+        private bool blueQ;
 
-        public Boolean[] CategoryList
+        public bool BlueQ
         {
-            get { return categoryList; }
-            set { SetProperty(ref categoryList, value); }
+            get { return blueQ; }
+            set { SetProperty(ref blueQ, value); }
+        }
+
+        private bool orangeQ;
+
+        public bool OrangeQ
+        {
+            get { return orangeQ; }
+            set { SetProperty(ref orangeQ, value); }
+        }
+
+        private bool yellowQ;
+
+        public bool YellowQ
+        {
+            get { return yellowQ; }
+            set { SetProperty(ref yellowQ, value); }
+        }
+
+        private bool purpleQ;
+
+        public bool PurpleQ
+        {
+            get { return purpleQ; }
+            set { SetProperty(ref purpleQ, value); }
+        }
+
+        private bool greenQ;
+
+        public bool GreenQ
+        {
+            get { return greenQ; }
+            set { SetProperty(ref greenQ, value); }
+        }
+
+        private bool brownQ;
+
+        public bool BrownQ
+        {
+            get { return brownQ; }
+            set { SetProperty(ref brownQ, value); }
         }
 
 
 
 
-        public Game(bool isPlaying, Question currQuestion, ObservableCollection<Question> questionList)
+        private DialogService dialogService = new DialogService();
+
+
+        public Game()
         {
-            IsPlaying = isPlaying;
-            CurrQuestion = currQuestion;
-            QuestionList = questionList;
-            CategoryList = new bool[5]{false, false, false, false, false};
-            
+            Initialize();
+            BlueQ = false;
+            OrangeQ = false;
+            YellowQ = false;
+            PurpleQ = false;
+            GreenQ = false;
+            BrownQ = false;
         }
 
-        public bool GetGameList(String dificulty, ObservableCollection<Question> list)
+        private void Initialize()
         {
+            QuestionList = new ObservableCollection<Question>();
+        }
 
 
-            foreach (Question question in list)
+
+
+        public void Start(string dificulty, ObservableCollection<Question> list)
+        {
+            if (GetGameList(dificulty, list))
             {
-                if (question.Category == dificulty)
-                {
-                    QuestionList.Add(question);
-                }
+                CurrQuestion = QuestionList.ElementAt(0);
+            } else
+            {
+                dialogService.Error("No hay suficientes preguntas");
             }
 
-            return true;
+        }
+
+        public bool GetGameList(string dificulty, ObservableCollection<Question> list)
+        {
+
+            var query = list.GroupBy(
+                    question => question.Category,
+                    (k, v) => new
+                    {
+                        Key = k,
+                        Count = v.Count(),
+                        Viable = v.Any(),
+                        Rnd = v.ElementAt(new Random().Next(0, v.Count()))
+                    }
+                ) ;
+
+            bool allGood = true;
+            
+            
+            
+            foreach (var res in query)
+            {
+                if (!res.Viable)
+                    allGood = false;
+            }
+
+            if (query.Count() != 6)
+            {
+                return false;
+            }
+
+            if (allGood)
+            {
+
+                foreach (var res in query)
+                {
+                    questionList.Add(res.Rnd);
+                }
+
+            }
+
+
+            return allGood;
         }
 
 

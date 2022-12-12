@@ -27,6 +27,8 @@ namespace Juego_de_preguntas.services
 
         public object Open<T>(String path)
         {
+            if (path == null)
+                path = "assets/def.json";
             return JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
 
         }
