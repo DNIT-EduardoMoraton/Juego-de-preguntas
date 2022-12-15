@@ -61,6 +61,16 @@ namespace Juego_de_preguntas
             set { SetProperty(ref dificulties, value); }
         }
 
+        private string responseStr;
+
+        public string ResponseStr
+        {
+            get { return responseStr; }
+            set { SetProperty(ref responseStr, value); }
+        }
+
+
+
         private DialogService dialogService;
         private JsonService jsonService;
         public MainWindowVM()
@@ -130,9 +140,13 @@ namespace Juego_de_preguntas
 
         public void PlayGame()
         {
-            this.currGame.Start("Facil", CurrQuestionList);
+            this.CurrGame.Play("Facil", CurrQuestionList);
         }
 
+        public void Guess()
+        {
+            this.CurrGame.Response(ResponseStr);
+        }
 
     }
 }

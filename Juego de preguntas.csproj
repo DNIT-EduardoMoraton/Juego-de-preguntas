@@ -156,6 +156,7 @@
     <Compile Include="classess\Game.cs" />
     <Compile Include="classess\Question.cs" />
     <Compile Include="converters\BooleanToVisibleConverter.cs" />
+    <Compile Include="converters\OfuscateConverter.cs" />
     <Compile Include="MainWindowVM.cs" />
     <Compile Include="services\BlobService.cs" />
     <Compile Include="services\DialogService.cs" />

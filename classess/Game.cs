@@ -83,8 +83,15 @@ namespace Juego_de_preguntas.classess
             set { SetProperty(ref brownQ, value); }
         }
 
+        public int gameIndex;
 
+        public int GameIndex
+        {
+            get { return gameIndex;  }
+            set { SetProperty(ref gameIndex, value);  }
+        }
 
+        private int MAX_QUESTIONS = 6;
 
         private DialogService dialogService = new DialogService();
 
@@ -92,6 +99,19 @@ namespace Juego_de_preguntas.classess
         public Game()
         {
             Initialize();
+
+        }
+
+        private void Initialize()
+        {
+            QuestionList = new ObservableCollection<Question>();
+            InitializeColors();
+
+
+        }
+
+        private void InitializeColors()
+        {
             BlueQ = false;
             OrangeQ = false;
             YellowQ = false;
@@ -100,25 +120,60 @@ namespace Juego_de_preguntas.classess
             BrownQ = false;
         }
 
-        private void Initialize()
-        {
-            QuestionList = new ObservableCollection<Question>();
-        }
 
 
 
-
-        public void Start(string dificulty, ObservableCollection<Question> list)
+        public void Play(string dificulty, ObservableCollection<Question> list)
         {
             if (GetGameList(dificulty, list))
             {
-                CurrQuestion = QuestionList.ElementAt(0);
+                CurrQuestion = QuestionList.ElementAt(GameIndex);
+                GameIndex = 0;
             } else
             {
                 dialogService.Error("No hay suficientes preguntas");
             }
 
         }
+
+        public void Response(String response)
+        {
+
+            if (GameIndex == MAX_QUESTIONS)
+            {
+                Initialize();
+            }
+
+
+            GameIndex++;
+            if (CurrQuestion.CorrectAns == response.ToLower())
+                dialogService.Good("Acertaste!");
+            else
+                dialogService.Error("Fallaste, la respuesta correcta es: " + CurrQuestion.CorrectAns);
+
+        }
+
+        private void enableCheese(String cat)
+        {
+            // "Arte y literatura", "Historia", "Deportes", "Ciencia", "Comida", "Ocio y Entretenimiento"
+            switch (cat)
+            {
+                case "Arte y literatura": GreenQ = true;
+                    break;
+
+                case "Historia": PurpleQ = true;
+                    break;
+
+
+
+                default: BrownQ = true;
+                    break;
+
+
+
+            }
+        }
+
 
         public bool GetGameList(string dificulty, ObservableCollection<Question> list)
         {
@@ -144,7 +199,7 @@ namespace Juego_de_preguntas.classess
                     allGood = false;
             }
 
-            if (query.Count() != 6)
+            if (query.Count() != MAX_QUESTIONS)
             {
                 return false;
             }

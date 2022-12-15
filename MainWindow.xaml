@@ -3,16 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:Juego_de_preguntas.converters"
         xmlns:local="clr-namespace:Juego_de_preguntas"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="booleanToVisbility"></BooleanToVisibilityConverter>
+        <l:OfuscateConverter x:Key="ofuscateConverter"></l:OfuscateConverter>
 
 
 
-
-        <Style x:Key="CategoryColorBorderBase" TargetType="{x:Type Border}">
+            <Style x:Key="CategoryColorBorderBase" TargetType="{x:Type Border}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Category}" Value="Arte y literatura">
                     <Setter Property="BorderBrush" Value="Green"/>
@@ -94,7 +95,7 @@
     </Window.Resources>
     <Grid>
         <TabControl>
-            <TabItem Header="Jugar" DataContext="{Binding Path=CurrGame}">
+            <TabItem Header="Jugar" DataContext="{Binding Path=CurrGame}" >
                 <Border BorderThickness="20,10,20,20" Style="{StaticResource CategoryColorBorderMainGame}">
                     <DockPanel >
                         <Border DockPanel.Dock="Top" Style="{StaticResource CategoryColorBorderMainGame}" BorderThickness="0,10,0,20">
@@ -114,15 +115,15 @@
                                     <StackPanel DockPanel.Dock="Top">
                                         <TextBlock>Resuesta:</TextBlock>
                                         <DockPanel>
-                                            <Button  DockPanel.Dock="Right">Validar</Button>
-                                            <TextBox></TextBox>
+                                            <Button x:Name="ValidateButton" Click="ValidateButton_Click" DockPanel.Dock="Right">Validar</Button>
+                                            <TextBox Text="{Binding Path=ResponseStr}"></TextBox>
                                         </DockPanel>
 
                                     </StackPanel>
                                     <Button x:Name="IniciarButton" DockPanel.Dock="Right" Width="100" Click="IniciarButton_Click">Iniciar</Button>
                                     <Expander>
                                         <Expander.Header>Pista</Expander.Header>
-                                        <TextBlock Text="{Binding Path=CurrQuestion.CorrectAns}"></TextBlock>
+                                        <TextBlock Text="{Binding Path=CurrQuestion.CorrectAns, Converter={StaticResource ofuscateConverter}}"></TextBlock>
                                     </Expander>
                                     
                                 </DockPanel>

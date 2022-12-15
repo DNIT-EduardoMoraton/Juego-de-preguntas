@@ -50,6 +50,11 @@ namespace Juego_de_preguntas.services
         {
             MessageBox.Show(msg, "Error en la aplicación", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        public void Good(string msg)
+        {
+            MessageBox.Show(msg, "Enhorabuena", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
     }
 
 }

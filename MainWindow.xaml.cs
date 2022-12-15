@@ -63,5 +63,10 @@ namespace Juego_de_preguntas
         {
             vm.PlayGame();
         }
+
+        private void ValidateButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.
+        }
     }
 }
