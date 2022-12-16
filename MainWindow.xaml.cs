@@ -66,7 +66,7 @@ namespace Juego_de_preguntas
 
         private void ValidateButton_Click(object sender, RoutedEventArgs e)
         {
-            vm.
+            
         }
     }
 }
