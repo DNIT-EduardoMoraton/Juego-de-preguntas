@@ -91,6 +91,22 @@ namespace Juego_de_preguntas.classess
             set { SetProperty(ref gameIndex, value);  }
         }
 
+        private string responseStr;
+
+        public string ResponseStr
+        {
+            get { return responseStr; }
+            set { SetProperty(ref responseStr, value); }
+        }
+
+        private int diffIndex;
+
+        public int DiffIndex
+        {
+            get { return diffIndex; }
+            set { SetProperty(ref diffIndex, value); }
+        }
+
         private int MAX_QUESTIONS = 6;
 
         private DialogService dialogService = new DialogService();
@@ -138,34 +154,43 @@ namespace Juego_de_preguntas.classess
 
         public void Response(String response)
         {
+            
 
-            if (GameIndex == MAX_QUESTIONS)
+
+            if ((CurrQuestion.CorrectAns ?? "NO_QUESTION") == (response.ToLower() ?? ""))
             {
-                Initialize();
-            }
-
-
-            GameIndex++;
-            if (CurrQuestion.CorrectAns == response.ToLower())
                 dialogService.Good("Acertaste!");
+                EnableCheese();
+                GameIndex++;
+                if (GameIndex == MAX_QUESTIONS)
+                {
+                    dialogService.Good("Has ganado!!");
+                    Initialize();
+                    return;
+                }
+                CurrQuestion = QuestionList[GameIndex];
+            }
             else
-                dialogService.Error("Fallaste, la respuesta correcta es: " + CurrQuestion.CorrectAns);
+                dialogService.Error("Fallaste");
 
         }
 
-        private void enableCheese(String cat)
+        private void EnableCheese()
         {
-            // "Arte y literatura", "Historia", "Deportes", "Ciencia", "Comida", "Ocio y Entretenimiento"
-            switch (cat)
+            
+            switch (CurrQuestion.Category)
             {
                 case "Arte y literatura": GreenQ = true;
                     break;
 
                 case "Historia": PurpleQ = true;
                     break;
-
-
-
+                case "Deportes": YellowQ = true;
+                    break;
+                case "Ciencia": OrangeQ = true;
+                    break;
+                case "Comida": BlueQ = true;
+                    break;
                 default: BrownQ = true;
                     break;
 
@@ -178,7 +203,9 @@ namespace Juego_de_preguntas.classess
         public bool GetGameList(string dificulty, ObservableCollection<Question> list)
         {
 
-            var query = list.GroupBy(
+            var query = list
+                .Where(x=> x.Dificulty == dificulty)
+                .GroupBy(
                     question => question.Category,
                     (k, v) => new
                     {
@@ -209,7 +236,7 @@ namespace Juego_de_preguntas.classess
 
                 foreach (var res in query)
                 {
-                    questionList.Add(res.Rnd);
+                    QuestionList.Add(res.Rnd);
                 }
 
             }

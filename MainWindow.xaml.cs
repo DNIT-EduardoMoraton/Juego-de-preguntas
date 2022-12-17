@@ -26,7 +26,7 @@ namespace Juego_de_preguntas
 
             InitializeComponent();
             vm = new MainWindowVM();
-            this.DataContext = vm;
+            DataContext = vm;
         }
 
         private void Examinar_Button_Click(object sender, RoutedEventArgs e)
@@ -66,7 +66,7 @@ namespace Juego_de_preguntas
 
         private void ValidateButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            vm.Guess();
         }
     }
 }

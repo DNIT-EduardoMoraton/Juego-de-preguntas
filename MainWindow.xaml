@@ -11,9 +11,19 @@
         <BooleanToVisibilityConverter x:Key="booleanToVisbility"></BooleanToVisibilityConverter>
         <l:OfuscateConverter x:Key="ofuscateConverter"></l:OfuscateConverter>
 
+        <Style x:Key="BlurDiff" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger  Binding="{Binding Path=CurrGame.CurrQuestion.Dificulty}" Value="Dificil">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="10" KernelType="Gaussian"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
 
-
-            <Style x:Key="CategoryColorBorderBase" TargetType="{x:Type Border}">
+        <Style x:Key="CategoryColorBorderBase" TargetType="{x:Type Border}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Category}" Value="Arte y literatura">
                     <Setter Property="BorderBrush" Value="Green"/>
@@ -49,31 +59,31 @@
         <Style x:Key="CategoryColorBorderMainGame" TargetType="{x:Type Border}">
             <Setter Property="BorderBrush" Value="Gray"></Setter>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Arte y literatura">
+                <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Arte y literatura">
                     <Setter Property="BorderBrush" Value="Green"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Historia">
+                <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Historia">
                     <Setter Property="BorderBrush" Value="Purple"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Deportes">
+                <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Deportes">
                     <Setter Property="BorderBrush" Value="Yellow"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Ciencia">
+                <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Ciencia">
                     <Setter Property="BorderBrush" Value="Orange"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Comida">
+                <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Comida">
                     <Setter Property="BorderBrush" Value="Blue"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=CurrQuestion.Category}" Value="Ocio y Entretenimiento">
+                <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Ocio y Entretenimiento">
                     <Setter Property="BorderBrush" Value="Brown"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=CurrQuestion.Dificulty}" Value="Facil">
+                <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Dificulty}" Value="Facil">
                     <Setter Property="Background" Value="LightGreen"></Setter>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=CurrQuestion.Dificulty}" Value="Medio">
+                <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Dificulty}" Value="Medio">
                     <Setter Property="Background" Value="Yellow"></Setter>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=CurrQuestion.Dificulty}" Value="Dificil">
+                <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Dificulty}" Value="Dificil">
                     <Setter Property="Background" Value="DarkRed"></Setter>
                 </DataTrigger>
             </Style.Triggers>
@@ -95,7 +105,7 @@
     </Window.Resources>
     <Grid>
         <TabControl>
-            <TabItem Header="Jugar" DataContext="{Binding Path=CurrGame}" >
+            <TabItem Header="Jugar">
                 <Border BorderThickness="20,10,20,20" Style="{StaticResource CategoryColorBorderMainGame}">
                     <DockPanel >
                         <Border DockPanel.Dock="Top" Style="{StaticResource CategoryColorBorderMainGame}" BorderThickness="0,10,0,20">
@@ -107,11 +117,11 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" BorderBrush="Aqua" BorderThickness="3">
-                                
+                                <Image Source="{Binding Path=CurrGame.CurrQuestion.Image}" Style="{StaticResource BlurDiff}"/>
                             </Border>
                             <DockPanel Grid.Row="1" LastChildFill="False">
                                 <DockPanel Width="500" LastChildFill="true">
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=CurrQuestion.QuestionText}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=CurrGame.CurrQuestion.QuestionText}"></TextBlock>
                                     <StackPanel DockPanel.Dock="Top">
                                         <TextBlock>Resuesta:</TextBlock>
                                         <DockPanel>
@@ -123,22 +133,22 @@
                                     <Button x:Name="IniciarButton" DockPanel.Dock="Right" Width="100" Click="IniciarButton_Click">Iniciar</Button>
                                     <Expander>
                                         <Expander.Header>Pista</Expander.Header>
-                                        <TextBlock Text="{Binding Path=CurrQuestion.CorrectAns, Converter={StaticResource ofuscateConverter}}"></TextBlock>
+                                        <TextBlock Text="{Binding Path=CurrGame.CurrQuestion.CorrectAns, Converter={StaticResource ofuscateConverter}}"></TextBlock>
                                     </Expander>
                                     
                                 </DockPanel>
-                                <Slider Orientation="Vertical" Maximum="2" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True">
+                                <Slider Value="{Binding Path=DiffIndex}" Orientation="Vertical" Maximum="2" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" >
                                     
                                 </Slider>
                                 <Image Source="assets/layout/difficultySlider.png"></Image>
                                 <Grid DockPanel.Dock="Right">
                                     <Image x:Name="Base" Source="assets/cheese/base.png"/>
-                                    <Image x:Name="CheeseCat0" Source="assets/cheese/cat_0.png" Visibility="{Binding Path=BlueQ, Converter={StaticResource booleanToVisbility}}"/>
-                                    <Image x:Name="CheeseCat1" Source="assets/cheese/cat_1.png" Visibility="{Binding Path=OrangeQ, Converter={StaticResource booleanToVisbility}}"/>
-                                    <Image x:Name="CheeseCat2" Source="assets/cheese/cat_2.png" Visibility="{Binding Path=YellowQ, Converter={StaticResource booleanToVisbility}}"/>
-                                    <Image x:Name="CheeseCat3" Source="assets/cheese/cat_3.png" Visibility="{Binding Path=PurpleQ, Converter={StaticResource booleanToVisbility}}"/>
-                                    <Image x:Name="CheeseCat4" Source="assets/cheese/cat_4.png" Visibility="{Binding Path=GreenQ, Converter={StaticResource booleanToVisbility}}"/>
-                                    <Image x:Name="CheeseCat5" Source="assets/cheese/cat_5.png" Visibility="{Binding Path=BrownQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat0" Source="assets/cheese/cat_0.png" Visibility="{Binding Path=CurrGame.BlueQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat1" Source="assets/cheese/cat_1.png" Visibility="{Binding Path=CurrGame.BrownQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat2" Source="assets/cheese/cat_2.png" Visibility="{Binding Path=CurrGame.GreenQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat3" Source="assets/cheese/cat_3.png" Visibility="{Binding Path=CurrGame.PurpleQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat4" Source="assets/cheese/cat_4.png" Visibility="{Binding Path=CurrGame.YellowQ, Converter={StaticResource booleanToVisbility}}"/>
+                                    <Image x:Name="CheeseCat5" Source="assets/cheese/cat_5.png" Visibility="{Binding Path=CurrGame.OrangeQ, Converter={StaticResource booleanToVisbility}}"/>
                                     
                                 </Grid>
                             </DockPanel>

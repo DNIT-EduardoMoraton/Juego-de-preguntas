@@ -13,7 +13,6 @@ namespace Juego_de_preguntas
     class MainWindowVM: ObservableObject
     {
         private Game currGame;
-
         public Game CurrGame
         {
             get { return currGame; }
@@ -69,6 +68,14 @@ namespace Juego_de_preguntas
             set { SetProperty(ref responseStr, value); }
         }
 
+        private int diffIndex;
+
+        public int DiffIndex
+        {
+            get { return diffIndex; }
+            set { SetProperty(ref diffIndex, value); }
+        }
+
 
 
         private DialogService dialogService;
@@ -84,8 +91,8 @@ namespace Juego_de_preguntas
 
             creaAddCurrQuestion();
             CreaEditCurrQuestion();
-            
-            CurrGame = new Game();
+
+            CurrGame = null;
             Categories = new ObservableCollection<string> { "Arte y literatura", "Historia", "Deportes", "Ciencia", "Comida", "Ocio y Entretenimiento" };
             Dificulties = new ObservableCollection<string> { "Facil", "Medio", "Dificil"};
         }
@@ -140,12 +147,13 @@ namespace Juego_de_preguntas
 
         public void PlayGame()
         {
-            this.CurrGame.Play("Facil", CurrQuestionList);
+            CurrGame = new Game();
+            CurrGame.Play(Dificulties[DiffIndex], CurrQuestionList);
         }
 
         public void Guess()
         {
-            this.CurrGame.Response(ResponseStr);
+            CurrGame.Response(ResponseStr);
         }
 
     }
