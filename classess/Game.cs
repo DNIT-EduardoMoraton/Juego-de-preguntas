@@ -139,7 +139,7 @@ namespace Juego_de_preguntas.classess
 
 
 
-        public void Play(string dificulty, ObservableCollection<Question> list)
+        public int Play(string dificulty, ObservableCollection<Question> list)
         {
             if (GetGameList(dificulty, list))
             {
@@ -149,10 +149,11 @@ namespace Juego_de_preguntas.classess
             {
                 dialogService.Error("No hay suficientes preguntas");
             }
+            return GameIndex;
 
         }
 
-        public void Response(String response)
+        public int Response(String response)
         {
             
 
@@ -166,12 +167,13 @@ namespace Juego_de_preguntas.classess
                 {
                     dialogService.Good("Has ganado!!");
                     Initialize();
-                    return;
+                    return GameIndex;
                 }
                 CurrQuestion = QuestionList[GameIndex];
             }
             else
                 dialogService.Error("Fallaste");
+            return GameIndex;
 
         }
 

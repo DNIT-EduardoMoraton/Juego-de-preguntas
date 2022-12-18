@@ -147,13 +147,20 @@ namespace Juego_de_preguntas
 
         public void PlayGame()
         {
+            int gIndex;
             CurrGame = new Game();
-            CurrGame.Play(Dificulties[DiffIndex], CurrQuestionList);
+            gIndex = CurrGame.Play(Dificulties[DiffIndex], CurrQuestionList);
+            if (gIndex == 0)
+                CurrGame = null;
         }
 
         public void Guess()
         {
-            CurrGame.Response(ResponseStr);
+            int gIndex;
+            gIndex = CurrGame.Response(ResponseStr);
+
+            if (gIndex == 6)
+                CurrGame = null;
         }
 
     }

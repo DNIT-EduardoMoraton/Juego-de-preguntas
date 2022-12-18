@@ -6,7 +6,7 @@
         xmlns:l="clr-namespace:Juego_de_preguntas.converters"
         xmlns:local="clr-namespace:Juego_de_preguntas"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" MinHeight="450" MinWidth="800" Icon="assets/icons/icon.ico">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="booleanToVisbility"></BooleanToVisibilityConverter>
         <l:OfuscateConverter x:Key="ofuscateConverter"></l:OfuscateConverter>
@@ -89,7 +89,22 @@
             </Style.Triggers>
         </Style>
 
-
+        <Style x:Key="DisabledWhenNull" TargetType="{x:Type Button}">
+            <Setter Property="IsEnabled" Value="True"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=CurrGame}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="EnabledWhenNull" TargetType="{x:Type TabItem}">
+            <Setter Property="IsEnabled" Value="False"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=CurrGame}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="True"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
 
         <DataTemplate DataType="{x:Type ListBox}" x:Key="EditQuestionSideMenuItem">
             <Border BorderThickness="3" Style="{StaticResource CategoryColorBorderBase}">
@@ -105,7 +120,7 @@
     </Window.Resources>
     <Grid>
         <TabControl>
-            <TabItem Header="Jugar">
+            <TabItem Header="Jugar" Style="{StaticResource EnabledWhenNull}">
                 <Border BorderThickness="20,10,20,20" Style="{StaticResource CategoryColorBorderMainGame}">
                     <DockPanel >
                         <Border DockPanel.Dock="Top" Style="{StaticResource CategoryColorBorderMainGame}" BorderThickness="0,10,0,20">
@@ -116,7 +131,7 @@
                                 <RowDefinition Height="2*" ></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Border Grid.Row="0" BorderBrush="Aqua" BorderThickness="3">
+                            <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="3" CornerRadius="0,0,10,10">
                                 <Image Source="{Binding Path=CurrGame.CurrQuestion.Image}" Style="{StaticResource BlurDiff}"/>
                             </Border>
                             <DockPanel Grid.Row="1" LastChildFill="False">
@@ -125,12 +140,12 @@
                                     <StackPanel DockPanel.Dock="Top">
                                         <TextBlock>Resuesta:</TextBlock>
                                         <DockPanel>
-                                            <Button x:Name="ValidateButton" Click="ValidateButton_Click" DockPanel.Dock="Right">Validar</Button>
+                                            <Button x:Name="ValidateButton" Click="ValidateButton_Click" DockPanel.Dock="Right" Template="{DynamicResource RoundModern}" Style="{StaticResource DisabledWhenNull}">Validar</Button>
                                             <TextBox Text="{Binding Path=ResponseStr}"></TextBox>
                                         </DockPanel>
 
                                     </StackPanel>
-                                    <Button x:Name="IniciarButton" DockPanel.Dock="Right" Width="100" Click="IniciarButton_Click">Iniciar</Button>
+                                    <Button x:Name="IniciarButton" DockPanel.Dock="Right" Width="100" Click="IniciarButton_Click" Template="{DynamicResource RoundModern}">Iniciar</Button>
                                     <Expander>
                                         <Expander.Header>Pista</Expander.Header>
                                         <TextBlock Text="{Binding Path=CurrGame.CurrQuestion.CorrectAns, Converter={StaticResource ofuscateConverter}}"></TextBlock>
@@ -157,7 +172,7 @@
                     </DockPanel>
                 </Border>
             </TabItem>
-            <TabItem Header="Añadir pregunta">
+            <TabItem Header="Añadir pregunta" Style="{StaticResource EnabledWhenNull}">
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button x:Name="AnyadirPregunta" Click="AnyadirPregunta_Click">Añadir pregunta</Button>
@@ -189,7 +204,7 @@
                     </DockPanel>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Gestionar preguntas" >
+            <TabItem Header="Gestionar preguntas" Style="{StaticResource EnabledWhenNull}">
                 <DockPanel LastChildFill="true">
                     <Border DockPanel.Dock="Right" BorderBrush="Black" BorderThickness="3" Width="250">
                         <DockPanel>
