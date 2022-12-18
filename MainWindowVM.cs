@@ -150,8 +150,10 @@ namespace Juego_de_preguntas
             int gIndex;
             CurrGame = new Game();
             gIndex = CurrGame.Play(Dificulties[DiffIndex], CurrQuestionList);
-            if (gIndex == 0)
+            if (gIndex == -1)
+            {
                 CurrGame = null;
+            }
         }
 
         public void Guess()

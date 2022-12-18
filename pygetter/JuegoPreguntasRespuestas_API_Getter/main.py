@@ -33,10 +33,17 @@ def uploadToBlobStorage(file_path, file_name):
         handler.write(img_data)
 
     with open(file_name, "rb") as data:
-        a = blob_client.upload_blob(data)
-        print(a)
-        print(f"Uploaded {file_name}.")
-        return "https://trivialedu.blob.core.windows.net/trivial/" + file_name
+        try:
+            a = blob_client.upload_blob(data)
+            print(a)
+            print(f"Uploaded {file_name}.")
+            return "https://trivialedu.blob.core.windows.net/trivial/" + file_name
+        except:
+            print(a)
+            print(f"Uploaded {file_name}.")
+            return "https://trivialedu.blob.core.windows.net/trivial/" + file_name
+
+
 
 
 def translate(sp_text):
@@ -59,7 +66,10 @@ def getImage(srt):
 
     response = rq.request('GET', url=url, params=querystring, headers=headers)
     print(response.status_code)
-    return response.json()["photos"][0]["src"]['original']
+    try:
+        return response.json()["photos"][0]["src"]['original']
+    except:
+        return "https://trivialedu.blob.core.windows.net/trivial/pregunta.jpg"
 
 
 questionsforjson = []

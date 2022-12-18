@@ -122,7 +122,7 @@ namespace Juego_de_preguntas.classess
         {
             QuestionList = new ObservableCollection<Question>();
             InitializeColors();
-
+            GameIndex = -1;
 
         }
 
@@ -143,8 +143,8 @@ namespace Juego_de_preguntas.classess
         {
             if (GetGameList(dificulty, list))
             {
-                CurrQuestion = QuestionList.ElementAt(GameIndex);
                 GameIndex = 0;
+                CurrQuestion = QuestionList.ElementAt(GameIndex);
             } else
             {
                 dialogService.Error("No hay suficientes preguntas");

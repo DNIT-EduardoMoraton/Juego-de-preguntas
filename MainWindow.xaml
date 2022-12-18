@@ -106,12 +106,19 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="EditQuestionsBorderBlue" TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="3"></Setter>
+            <Setter Property="BorderBrush" Value="LightBlue"></Setter>
+            <Setter Property="Background" Value="AliceBlue"></Setter>
+            <Setter Property="Margin" Value="2.5"></Setter>
+        </Style>
+
         <DataTemplate DataType="{x:Type ListBox}" x:Key="EditQuestionSideMenuItem">
             <Border BorderThickness="3" Style="{StaticResource CategoryColorBorderBase}">
                 <DockPanel Height="50" Width="200">
                     <Image Source="{Binding Image}" Width="50" DockPanel.Dock="Left" Stretch="UniformToFill"></Image>
                     <StackPanel Margin="2">
-                        <TextBlock Text="{Binding Path=QuestionText}"></TextBlock>
+                        <TextBlock Text="{Binding Path=QuestionText}" TextTrimming="CharacterEllipsis"></TextBlock>
                         <TextBlock Text="{Binding Path=Category}"></TextBlock>
                     </StackPanel>
                 </DockPanel>
@@ -121,11 +128,9 @@
     <Grid>
         <TabControl>
             <TabItem Header="Jugar" Style="{StaticResource EnabledWhenNull}">
-                <Border BorderThickness="20,10,20,20" Style="{StaticResource CategoryColorBorderMainGame}">
+                <Border BorderThickness="5,5,5,5" CornerRadius="10" Style="{StaticResource CategoryColorBorderMainGame}">
                     <DockPanel >
-                        <Border DockPanel.Dock="Top" Style="{StaticResource CategoryColorBorderMainGame}" BorderThickness="0,10,0,20">
-                            <TextBlock>Estado ventana</TextBlock>
-                        </Border>
+       
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="2*" ></RowDefinition>
@@ -140,7 +145,7 @@
                                     <StackPanel DockPanel.Dock="Top">
                                         <TextBlock>Resuesta:</TextBlock>
                                         <DockPanel>
-                                            <Button x:Name="ValidateButton" Click="ValidateButton_Click" DockPanel.Dock="Right" Template="{DynamicResource RoundModern}" Style="{StaticResource DisabledWhenNull}">Validar</Button>
+                                            <Button Margin="5" x:Name="ValidateButton" Click="ValidateButton_Click" DockPanel.Dock="Right" Template="{DynamicResource RoundModern}" Style="{StaticResource DisabledWhenNull}">Validar</Button>
                                             <TextBox Text="{Binding Path=ResponseStr}"></TextBox>
                                         </DockPanel>
 
@@ -174,9 +179,9 @@
             </TabItem>
             <TabItem Header="Añadir pregunta" Style="{StaticResource EnabledWhenNull}">
                 <DockPanel>
-                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button x:Name="AnyadirPregunta" Click="AnyadirPregunta_Click">Añadir pregunta</Button>
-                        <Button x:Name="LimpiarButton" Click="LimpiarButton_Click">Limpiar</Button>
+                    <StackPanel Margin="5" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button x:Name="AnyadirPregunta" Margin="5" Click="AnyadirPregunta_Click">Añadir pregunta</Button>
+                        <Button x:Name="LimpiarButton" Margin="5" Click="LimpiarButton_Click">Limpiar</Button>
                     </StackPanel>
                     <DockPanel>
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
@@ -198,7 +203,7 @@
                                 <ComboBox DockPanel.Dock="Right" ItemsSource="{Binding Path=Dificulties}" SelectedItem="{Binding Path=AddCurrQuestion.Dificulty}"> </ComboBox>
                             </DockPanel>
                         </StackPanel>
-                        <Border BorderBrush="Black" BorderThickness="7">
+                        <Border BorderBrush="Gray" BorderThickness="5" CornerRadius="0,0,10,10">
                             <Image Source="{Binding Path=AddCurrQuestion.Image}"></Image>
                         </Border>
                     </DockPanel>
@@ -206,17 +211,17 @@
             </TabItem>
             <TabItem Header="Gestionar preguntas" Style="{StaticResource EnabledWhenNull}">
                 <DockPanel LastChildFill="true">
-                    <Border DockPanel.Dock="Right" BorderBrush="Black" BorderThickness="3" Width="250">
+                    <Border DockPanel.Dock="Right" BorderBrush="Gray" BorderThickness="5" CornerRadius="0,0,10,10" Width="250">
                         <DockPanel>
-                            <Border BorderBrush="Black" BorderThickness="3" DockPanel.Dock="Bottom" Height="30">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button x:Name="LoadButton" Click="LoadButton_Click">LOAD</Button>
-                                    <Button x:Name="SaveButton" Click="SaveButton_Click" >SAVE</Button>
-                                    <Button x:Name="eliminarButton" Click="eliminarButton_Click">TRASH   </Button>
+                            <Border  DockPanel.Dock="Bottom" Height="50">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button x:Name="LoadButton" Click="LoadButton_Click" Margin="10" Template="{DynamicResource RoundModern}">CARGAR</Button>
+                                    <Button x:Name="SaveButton" Click="SaveButton_Click" Margin="10" Template="{DynamicResource RoundModern}">GUARDAR</Button>
+                                    <Button x:Name="eliminarButton" Click="eliminarButton_Click" Margin="10" Template="{DynamicResource RoundModern}">ELIMINAR</Button>
                                 </StackPanel>
                             </Border>
 
-                            <Border BorderBrush="Black" BorderThickness="3">
+                            <Border BorderBrush="Gray" BorderThickness="5">
                                 <ListBox ItemsSource="{Binding Path=CurrQuestionList}" SelectedItem="{Binding Path=EditCurrQuestion}" ItemTemplate="{StaticResource EditQuestionSideMenuItem}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                     
                                 </ListBox>
@@ -227,7 +232,7 @@
                     <Border>
                         <DockPanel>
             
-                            <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3"> 
+                            <Border DockPanel.Dock="Bottom" Style="{StaticResource EditQuestionsBorderBlue}"> 
                                 <DockPanel>
                                     <TextBlock DockPanel.Dock="Left">Imagen</TextBlock>
                                     <Button DockPanel.Dock="Right">Examinar</Button>
@@ -235,19 +240,19 @@
                                     
                                 </DockPanel>
                             </Border>
-                            <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3">
+                            <Border DockPanel.Dock="Bottom" Style="{StaticResource EditQuestionsBorderBlue}">
                                 <DockPanel>
                                     <TextBlock DockPanel.Dock="Left">Respuesta</TextBlock>
                                     <TextBox Text="{Binding Path=EditCurrQuestion.CorrectAns}"></TextBox>
                                 </DockPanel>
                             </Border>
-                            <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3">
+                            <Border DockPanel.Dock="Bottom" Style="{StaticResource EditQuestionsBorderBlue}">
                                 <DockPanel>
                                     <TextBlock DockPanel.Dock="Left">Pregunta</TextBlock>
                                     <TextBox Text="{Binding Path=EditCurrQuestion.QuestionText}"></TextBox>
                                 </DockPanel>
                             </Border>
-                            <Border DockPanel.Dock="Bottom" BorderBrush="Blue" BorderThickness="3" Margin="3">
+                            <Border DockPanel.Dock="Bottom" Style="{StaticResource EditQuestionsBorderBlue}">
                                 <DockPanel LastChildFill="False">
                                     <DockPanel DockPanel.Dock="Left" LastChildFill="False">
                                         <TextBlock DockPanel.Dock="Left">Categoria</TextBlock>
@@ -259,7 +264,7 @@
                                     </DockPanel>
                                 </DockPanel>
                             </Border>
-                            <Border BorderBrush="Aquamarine" BorderThickness="3">
+                            <Border BorderBrush="Gray" BorderThickness="5,5,2.5,5">
                                 <Image Source="{Binding Path=EditCurrQuestion.Image}">
                                     
                                 </Image>
