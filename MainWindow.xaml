@@ -122,6 +122,19 @@
             <Setter Property="MaxWidth" Value="600"></Setter>
         </Style>
 
+        <Style x:Key="ExpanderText" TargetType="{x:Type Expander}">
+            <Style.Triggers>
+                <Trigger Property="IsExpanded" Value="True">
+                    <Setter Property="Header" Value="Ocultar Pista"></Setter>
+                </Trigger>
+                <Trigger Property="IsExpanded" Value="False">
+                    <Setter Property="Header" Value="Mostrar Pista"></Setter>
+                </Trigger>
+            </Style.Triggers>
+            
+            
+        </Style>
+
         <DataTemplate DataType="{x:Type ListBox}" x:Key="EditQuestionSideMenuItem">
             <Border BorderThickness="3" Style="{StaticResource CategoryColorBorderBase}">
                 <DockPanel Height="50" Width="200">
@@ -162,8 +175,7 @@
                                     </StackPanel>
                                     <Button x:Name="IniciarButton" Width="50" Height="40" Margin="10,0,10,0" Click="IniciarButton_Click" Template="{DynamicResource RoundModern}">Iniciar</Button>
                                     <Button x:Name="ResetButtion" DockPanel.Dock="Right" Width="55" Height="40" Click="ResetButtion_Click" Template="{DynamicResource RoundModern}">Salir</Button>
-                                    <Expander>
-                                        <Expander.Header>Pista</Expander.Header>
+                                    <Expander Style="{StaticResource ExpanderText}">
                                         <TextBlock Text="{Binding Path=CurrGame.CurrQuestion.CorrectAns, Converter={StaticResource ofuscateConverter}}"></TextBlock>
                                     </Expander>
                                     
@@ -171,6 +183,7 @@
                                 <Slider Value="{Binding Path=DiffIndex}" Orientation="Vertical" Maximum="2" Minimum="0" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" >
                                     
                                 </Slider>
+                                
                                 <Image Source="assets/layout/difficultySlider.png"></Image>
                                 <Grid DockPanel.Dock="Right">
                                     <Image x:Name="Base" Source="assets/cheese/base.png"/>
