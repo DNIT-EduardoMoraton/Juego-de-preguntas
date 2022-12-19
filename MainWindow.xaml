@@ -26,31 +26,31 @@
         <Style x:Key="CategoryColorBorderBase" TargetType="{x:Type Border}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Category}" Value="Arte y literatura">
-                    <Setter Property="BorderBrush" Value="Green"/>
+                    <Setter Property="BorderBrush" Value="#214E34"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Category}" Value="Historia">
-                    <Setter Property="BorderBrush" Value="Purple"/>
+                    <Setter Property="BorderBrush" Value="#42113C"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Category}" Value="Deportes">
-                    <Setter Property="BorderBrush" Value="Yellow"/>
+                    <Setter Property="BorderBrush" Value="#FCEC52"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Category}" Value="Ciencia">
-                    <Setter Property="BorderBrush" Value="Orange"/>
+                    <Setter Property="BorderBrush" Value="#DC851F"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Category}" Value="Comida">
-                    <Setter Property="BorderBrush" Value="Blue"/>
+                    <Setter Property="BorderBrush" Value="#005377"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Category}" Value="Ocio y Entretenimiento">
-                    <Setter Property="BorderBrush" Value="Brown"/>
+                    <Setter Property="BorderBrush" Value="#2F2504"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Dificulty}" Value="Facil">
-                    <Setter Property="Background" Value="LightGreen"></Setter>
+                    <Setter Property="Background" Value="#B9FFB7"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Dificulty}" Value="Medio">
-                    <Setter Property="Background" Value="Yellow"></Setter>
+                    <Setter Property="Background" Value="#E4CBA0"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Dificulty}" Value="Dificil">
-                    <Setter Property="Background" Value="DarkRed"></Setter>
+                    <Setter Property="Background" Value="#FFC3C2"></Setter>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -60,31 +60,31 @@
             <Setter Property="BorderBrush" Value="Gray"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Arte y literatura">
-                    <Setter Property="BorderBrush" Value="Green"/>
+                    <Setter Property="BorderBrush" Value="#214E34"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Historia">
-                    <Setter Property="BorderBrush" Value="Purple"/>
+                    <Setter Property="BorderBrush" Value="#42113C"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Deportes">
-                    <Setter Property="BorderBrush" Value="Yellow"/>
+                    <Setter Property="BorderBrush" Value="#FCEC52"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Ciencia">
-                    <Setter Property="BorderBrush" Value="Orange"/>
+                    <Setter Property="BorderBrush" Value="#DC851F"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Comida">
-                    <Setter Property="BorderBrush" Value="Blue"/>
+                    <Setter Property="BorderBrush" Value="#005377"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Category}" Value="Ocio y Entretenimiento">
-                    <Setter Property="BorderBrush" Value="Brown"/>
+                    <Setter Property="BorderBrush" Value="#2F2504"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Dificulty}" Value="Facil">
-                    <Setter Property="Background" Value="LightGreen"></Setter>
+                    <Setter Property="Background" Value="#B9FFB7"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Dificulty}" Value="Medio">
-                    <Setter Property="Background" Value="Yellow"></Setter>
+                    <Setter Property="Background" Value="#E4CBA0"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=CurrGame.CurrQuestion.Dificulty}" Value="Dificil">
-                    <Setter Property="Background" Value="DarkRed"></Setter>
+                    <Setter Property="Background" Value="#FFC3C2"></Setter>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -108,9 +108,18 @@
 
         <Style x:Key="EditQuestionsBorderBlue" TargetType="{x:Type Border}">
             <Setter Property="BorderThickness" Value="3"></Setter>
-            <Setter Property="BorderBrush" Value="LightBlue"></Setter>
+            <Setter Property="BorderBrush" Value="Gray"></Setter>
             <Setter Property="Background" Value="AliceBlue"></Setter>
-            <Setter Property="Margin" Value="2.5"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Padding" Value="2.5"></Setter>
+        </Style>
+
+        <Style x:Key="TextBlockLeftSep" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="0,0,20,0"></Setter>
+        </Style>
+
+        <Style x:Key="TextBoxSizeStandard" TargetType="{x:Type TextBox}">
+            <Setter Property="MaxWidth" Value="600"></Setter>
         </Style>
 
         <DataTemplate DataType="{x:Type ListBox}" x:Key="EditQuestionSideMenuItem">
@@ -124,6 +133,7 @@
                 </DockPanel>
             </Border>
         </DataTemplate>
+        
     </Window.Resources>
     <Grid>
         <TabControl>
@@ -136,7 +146,7 @@
                                 <RowDefinition Height="2*" ></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="3" CornerRadius="0,0,10,10">
+                            <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="0,0,0,5" CornerRadius="10,10,10,10">
                                 <Image Source="{Binding Path=CurrGame.CurrQuestion.Image}" Style="{StaticResource BlurDiff}"/>
                             </Border>
                             <DockPanel Grid.Row="1" LastChildFill="False">
@@ -150,7 +160,8 @@
                                         </DockPanel>
 
                                     </StackPanel>
-                                    <Button x:Name="IniciarButton" DockPanel.Dock="Right" Width="100" Click="IniciarButton_Click" Template="{DynamicResource RoundModern}">Iniciar</Button>
+                                    <Button x:Name="IniciarButton" Width="50" Height="40" Click="IniciarButton_Click" Template="{DynamicResource RoundModern}">Iniciar</Button>
+                                    <Button x:Name="ResetButtion" DockPanel.Dock="Right" Width="55" Height="40" Click="ResetButtion_Click" Template="{DynamicResource RoundModern}">Reiniciar</Button>
                                     <Expander>
                                         <Expander.Header>Pista</Expander.Header>
                                         <TextBlock Text="{Binding Path=CurrGame.CurrQuestion.CorrectAns, Converter={StaticResource ofuscateConverter}}"></TextBlock>
@@ -221,7 +232,7 @@
                                 </StackPanel>
                             </Border>
 
-                            <Border BorderBrush="Gray" BorderThickness="5">
+                            <Border BorderBrush="Gray" BorderThickness="0,0,0,5">
                                 <ListBox ItemsSource="{Binding Path=CurrQuestionList}" SelectedItem="{Binding Path=EditCurrQuestion}" ItemTemplate="{StaticResource EditQuestionSideMenuItem}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                     
                                 </ListBox>
@@ -234,37 +245,37 @@
             
                             <Border DockPanel.Dock="Bottom" Style="{StaticResource EditQuestionsBorderBlue}"> 
                                 <DockPanel>
-                                    <TextBlock DockPanel.Dock="Left">Imagen</TextBlock>
-                                    <Button DockPanel.Dock="Right">Examinar</Button>
-                                    <TextBox Text="{Binding Path=EditCurrQuestion.Image}"></TextBox>
+                                    <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextBlockLeftSep}">Imagen</TextBlock>
+                                    <Button x:Name="ExaminarButtonEdit" DockPanel.Dock="Right" Click="ExaminarButtonEdit_Click">Examinar</Button>
+                                    <TextBox Text="{Binding Path=EditCurrQuestion.Image}" Style="{StaticResource TextBoxSizeStandard}"></TextBox>
                                     
                                 </DockPanel>
                             </Border>
                             <Border DockPanel.Dock="Bottom" Style="{StaticResource EditQuestionsBorderBlue}">
                                 <DockPanel>
-                                    <TextBlock DockPanel.Dock="Left">Respuesta</TextBlock>
-                                    <TextBox Text="{Binding Path=EditCurrQuestion.CorrectAns}"></TextBox>
+                                    <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextBlockLeftSep}">Respuesta</TextBlock>
+                                    <TextBox Text="{Binding Path=EditCurrQuestion.CorrectAns}" Style="{StaticResource TextBoxSizeStandard}"></TextBox>
                                 </DockPanel>
                             </Border>
                             <Border DockPanel.Dock="Bottom" Style="{StaticResource EditQuestionsBorderBlue}">
                                 <DockPanel>
-                                    <TextBlock DockPanel.Dock="Left">Pregunta</TextBlock>
-                                    <TextBox Text="{Binding Path=EditCurrQuestion.QuestionText}"></TextBox>
+                                    <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextBlockLeftSep}">Pregunta</TextBlock>
+                                    <TextBox Text="{Binding Path=EditCurrQuestion.QuestionText}" Style="{StaticResource TextBoxSizeStandard}"></TextBox>
                                 </DockPanel>
                             </Border>
                             <Border DockPanel.Dock="Bottom" Style="{StaticResource EditQuestionsBorderBlue}">
                                 <DockPanel LastChildFill="False">
                                     <DockPanel DockPanel.Dock="Left" LastChildFill="False">
-                                        <TextBlock DockPanel.Dock="Left">Categoria</TextBlock>
+                                        <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextBlockLeftSep}">Categoria: </TextBlock>
                                         <ComboBox DockPanel.Dock="Right" ItemsSource="{Binding Path=Categories}" SelectedItem="{Binding Path=EditCurrQuestion.Category}"></ComboBox>
                                     </DockPanel>
-                                    <DockPanel DockPanel.Dock="Right" LastChildFill="False">
-                                        <TextBlock DockPanel.Dock="Left">Dificultad</TextBlock>
+                                    <DockPanel DockPanel.Dock="Right" LastChildFill="False" >
+                                        <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextBlockLeftSep}">Dificultad: </TextBlock>
                                         <ComboBox DockPanel.Dock="Right" ItemsSource="{Binding Path=Dificulties}" SelectedItem="{Binding Path=EditCurrQuestion.Dificulty}"></ComboBox>
                                     </DockPanel>
                                 </DockPanel>
                             </Border>
-                            <Border BorderBrush="Gray" BorderThickness="5,5,2.5,5">
+                            <Border BorderBrush="Gray" BorderThickness="5,5,2.5,5" CornerRadius="0,0,0,10">
                                 <Image Source="{Binding Path=EditCurrQuestion.Image}">
                                     
                                 </Image>

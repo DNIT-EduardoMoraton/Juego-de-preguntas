@@ -12,6 +12,13 @@ namespace Juego_de_preguntas.services
     {
         public static string getBlob(String path)
         {
+            if (path == null) 
+            {
+                return "";
+            }
+
+
+
             string cadenaConexion = "DefaultEndpointsProtocol=https;AccountName=trivialedu;AccountKey=ZLNCSVkZB/C4pBLnbUODrNZwNQOfYMq6Jo7MGAgQm2eSunYX/3eFWLAkzMCPtZwvjIZFTyduzis0+AStiwWiQw==;EndpointSuffix=core.windows.net"; 
             string nombreContenedorBlobs = "trivial"; 
             
@@ -20,7 +27,7 @@ namespace Juego_de_preguntas.services
             var clienteBlobService = new BlobServiceClient(cadenaConexion);
             var clienteContenedor = clienteBlobService.GetBlobContainerClient(nombreContenedorBlobs);
 
-            // Verificar que el path no es nulo
+            
             Stream streamImagen = File.OpenRead(path);
             string nombreImagen = Path.GetFileName(path);
             try

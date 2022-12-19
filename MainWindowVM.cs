@@ -97,7 +97,7 @@ namespace Juego_de_preguntas
             Dificulties = new ObservableCollection<string> { "Facil", "Medio", "Dificil"};
         }
 
-        // ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+        // ADD QUESTION
         public void creaAddCurrQuestion()
         {
             AddCurrQuestion = new Question();
@@ -117,7 +117,7 @@ namespace Juego_de_preguntas
             creaAddCurrQuestion();
         }
 
-        // EDITTTTTTTTTTTTTTTTT
+        // EDIT QUESTION
 
 
         public void deleteEditQuestion()
@@ -142,14 +142,14 @@ namespace Juego_de_preguntas
             EditCurrQuestion.Dificulty = "Facil";
         }
 
-        // PLAYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+        // PLAY
 
 
         public void PlayGame()
         {
             int gIndex;
             CurrGame = new Game();
-            gIndex = CurrGame.Play(Dificulties[DiffIndex], CurrQuestionList);
+            gIndex = CurrGame.Play(Dificulties[DiffIndex], CurrQuestionList); 
             if (gIndex == -1)
             {
                 CurrGame = null;
@@ -163,6 +163,11 @@ namespace Juego_de_preguntas
 
             if (gIndex == 6)
                 CurrGame = null;
+        }
+
+        public void Restart()
+        {
+            CurrGame = null;
         }
 
     }

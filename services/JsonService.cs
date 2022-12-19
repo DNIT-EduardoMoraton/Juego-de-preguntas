@@ -17,14 +17,12 @@ namespace Juego_de_preguntas.services
         public void Save<T>(T ob, String path)
         {
             
-            if (path != "")
+            if (path != "" && path != null)
             {
                 string personasJson = JsonConvert.SerializeObject(ob);
                 File.WriteAllText(path, personasJson);
-            } else
-            {
-
-            }
+            } 
+            
                 
         }
 

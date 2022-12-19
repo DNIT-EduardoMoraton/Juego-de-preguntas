@@ -145,7 +145,7 @@ namespace Juego_de_preguntas.classess
             {
                 GameIndex = 0;
                 CurrQuestion = QuestionList.ElementAt(GameIndex);
-            } else
+            }else
             {
                 dialogService.Error("No hay suficientes preguntas");
             }
@@ -156,7 +156,10 @@ namespace Juego_de_preguntas.classess
         public int Response(String response)
         {
             
-
+            if (response == null)
+            {
+                return GameIndex;
+            }
 
             if ((CurrQuestion.CorrectAns ?? "NO_QUESTION") == (response.ToLower() ?? ""))
             {

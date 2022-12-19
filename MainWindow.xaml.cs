@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Juego_de_preguntas
 {
-    /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private MainWindowVM vm;
@@ -67,6 +64,16 @@ namespace Juego_de_preguntas
         private void ValidateButton_Click(object sender, RoutedEventArgs e)
         {
             vm.Guess();
+        }
+
+        private void ResetButtion_Click(object sender, RoutedEventArgs e)
+        {
+            vm.Restart();
+        }
+
+        private void ExaminarButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
