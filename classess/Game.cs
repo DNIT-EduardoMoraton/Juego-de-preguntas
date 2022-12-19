@@ -170,7 +170,7 @@ namespace Juego_de_preguntas.classess
                 {
                     dialogService.Good("Has ganado!!");
                     Initialize();
-                    return GameIndex;
+                    return -1;
                 }
                 CurrQuestion = QuestionList[GameIndex];
             }

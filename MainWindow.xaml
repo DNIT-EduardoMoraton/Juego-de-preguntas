@@ -146,12 +146,12 @@
                                 <RowDefinition Height="2*" ></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="0,0,0,5" CornerRadius="10,10,10,10">
+                            <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="0,0,0,5" CornerRadius="10,10,10,10" Style="{StaticResource CategoryColorBorderMainGame}">
                                 <Image Source="{Binding Path=CurrGame.CurrQuestion.Image}" Style="{StaticResource BlurDiff}"/>
                             </Border>
-                            <DockPanel Grid.Row="1" LastChildFill="False">
+                            <DockPanel Grid.Row="1" LastChildFill="False" Margin="5">
                                 <DockPanel Width="500" LastChildFill="true">
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=CurrGame.CurrQuestion.QuestionText}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=CurrGame.CurrQuestion.QuestionText}" TextWrapping="Wrap" FontFamily="Segoe UI Black" FontSize="18" ></TextBlock>
                                     <StackPanel DockPanel.Dock="Top">
                                         <TextBlock>Resuesta:</TextBlock>
                                         <DockPanel>
@@ -160,8 +160,8 @@
                                         </DockPanel>
 
                                     </StackPanel>
-                                    <Button x:Name="IniciarButton" Width="50" Height="40" Click="IniciarButton_Click" Template="{DynamicResource RoundModern}">Iniciar</Button>
-                                    <Button x:Name="ResetButtion" DockPanel.Dock="Right" Width="55" Height="40" Click="ResetButtion_Click" Template="{DynamicResource RoundModern}">Reiniciar</Button>
+                                    <Button x:Name="IniciarButton" Width="50" Height="40" Margin="10,0,10,0" Click="IniciarButton_Click" Template="{DynamicResource RoundModern}">Iniciar</Button>
+                                    <Button x:Name="ResetButtion" DockPanel.Dock="Right" Width="55" Height="40" Click="ResetButtion_Click" Template="{DynamicResource RoundModern}">Salir</Button>
                                     <Expander>
                                         <Expander.Header>Pista</Expander.Header>
                                         <TextBlock Text="{Binding Path=CurrGame.CurrQuestion.CorrectAns, Converter={StaticResource ofuscateConverter}}"></TextBlock>

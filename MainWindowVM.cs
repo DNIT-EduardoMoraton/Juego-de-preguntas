@@ -142,6 +142,10 @@ namespace Juego_de_preguntas
             EditCurrQuestion.Dificulty = "Facil";
         }
 
+        public void ManageAddPhoto()
+        {
+            EditCurrQuestion.Image = BlobService.getBlob(dialogService.GetImagePath());
+        }
         // PLAY
 
 
