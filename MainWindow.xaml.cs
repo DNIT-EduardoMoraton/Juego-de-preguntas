@@ -73,7 +73,7 @@ namespace Juego_de_preguntas
 
         private void ExaminarButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            vm.ManageAddPhoto();
         }
     }
 }
