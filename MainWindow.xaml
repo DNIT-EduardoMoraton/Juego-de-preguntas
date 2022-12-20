@@ -159,7 +159,7 @@
                                 <RowDefinition Height="2*" ></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="0,0,0,5" CornerRadius="10,10,10,10" Style="{StaticResource CategoryColorBorderMainGame}">
+                            <Border Grid.Row="0" BorderThickness="0,0,0,5" CornerRadius="10,10,10,10" Style="{StaticResource CategoryColorBorderMainGame}">
                                 <Image Source="{Binding Path=CurrGame.CurrQuestion.Image}" Style="{StaticResource BlurDiff}"/>
                             </Border>
                             <DockPanel Grid.Row="1" LastChildFill="False" Margin="5">
@@ -211,10 +211,10 @@
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
                             <StackPanel Orientation="Horizontal" MinWidth="600" HorizontalAlignment="Center">
                                 <TextBlock Margin="0,0,10,0" Width="70">Pregunta: </TextBlock>
-                                <TextBox Width="600" Text="{Binding Path=AddCurrQuestion.QuestionText}"></TextBox>
+                                <TextBox x:Name="PreguntaTextBox" MinWidth="600" Text="{Binding Path=AddCurrQuestion.QuestionText}"></TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" MinWidth="600" HorizontalAlignment="Center">
-                                <TextBlock Margin="0,0,10,0" Width="70">Respuesta: </TextBlock>
+                                <TextBlock x:Name="Respues" Margin="0,0,10,0" Width="70">Respuesta: </TextBlock>
                                 <TextBox Width="600" Text="{Binding Path=AddCurrQuestion.CorrectAns}"></TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

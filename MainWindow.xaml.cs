@@ -18,6 +18,7 @@ namespace Juego_de_preguntas
     public partial class MainWindow : Window
     {
         private MainWindowVM vm;
+        
         public MainWindow()
         {
 

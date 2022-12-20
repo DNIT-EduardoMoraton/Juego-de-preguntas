@@ -167,6 +167,10 @@ namespace Juego_de_preguntas
 
             if (gIndex == 6)
                 CurrGame = null;
+            if (gIndex == -1)
+            {
+                CurrGame = null;
+            }
         }
 
         public void Restart()
